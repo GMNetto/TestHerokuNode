@@ -1,4 +1,5 @@
 var mysql = require("mysql2");
+var https = require("https") , fs = require("fs");
 var express = require('express');
 var app = express();
 
@@ -19,4 +20,9 @@ app.get('/', function(req, res){
     });
 });
 
-app.listen(app.get('port'));
+//app.listen(app.get('port'));
+
+var server = https.createServer({
+  key: fs.readFileSync('private.key'),
+  cert: fs.readFileSync('certificate.pem')
+}, app).listen(app.get('port'));
