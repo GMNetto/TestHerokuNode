@@ -20,9 +20,9 @@ app.get('/', function(req, res){
     });
 });
 
-app.listen(app.get('port'));
+//app.listen(app.get('port'));
 
 var server = https.createServer({
   key: fs.readFileSync('private.key'),
   cert: fs.readFileSync('certificate.pem')
-}, app).listen(8080);
+}, app).listen(app.get('port'));
